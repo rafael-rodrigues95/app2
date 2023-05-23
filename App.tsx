@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import 'react-native-gesture-handler';
 import type {PropsWithChildren} from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
+import Globais from './components/Globais';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import TelaSobre from './components/TelaSobre';
 
 const Stack = createStackNavigator(); // Usado para a navegação (React Navigation)
 const Tabs = createBottomTabNavigator(); // Usado para a navegação (Por guias)
@@ -24,15 +26,6 @@ function TelaHome({navigation}) {
   );
 }
 
-function TelaSobre({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Tela Sobre</Text>
-      <Text>Algum texto</Text>
-      <Button title="Voltar" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
 
 function TelaCursos({navigation}) {
   return (
@@ -66,6 +59,8 @@ function TelaCursoReactNative({route, navigation}) {
   );
 }
 
+
+{/*
 export default function App2() {
   return (
     <NavigationContainer>
@@ -123,7 +118,7 @@ export default function App2() {
           }}
         />
       </Stack.Navigator>
-*/}
+
 
       <Tabs.Navigator>
         <Tabs.Screen
@@ -166,18 +161,26 @@ export default function App2() {
             headerTintColor: '#fff',
           }}
         />
-        <Tabs.Screen
-          name="CursoReactNative"
-          component={TelaCursoReactNative}
-          options={{
-            title: 'Curso de React Native',
-            headerStyle: {
-              backgroundColor: '#005',
-            },
-            headerTintColor: '#fff',
-          }}
-        />
       </Tabs.Navigator>
     </NavigationContainer>
   );
+}
+*/}
+
+
+// Utilizando variáveis globais
+export default class App2 extends Component {
+  nome=Globais.nome
+  curso=Globais.curso
+  ano=Globais.ano
+  
+  render(){
+    return(
+      <View>
+        <Text>Nome: {this.nome}</Text>
+        <Text>Curso: {this.curso}</Text>
+        <Text>Ano: {this.ano}</Text>
+      </View>
+    )
+  }
 }
